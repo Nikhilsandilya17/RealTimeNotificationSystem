@@ -13,10 +13,17 @@ public class RealTimeNotificationSystemDemo {
         user.subscribeChannel(ChannelType.EMAIL);
         user.subscribeChannel(ChannelType.PUSH);
 
-        NotificationObserver emailObserver = new EmailNotificationObserver(user);
-        NotificationObserver smsObserver = new SMSNotificationObserver(user);
-        NotificationObserver pushObserver = new PushNotificationObserver(user);
+        NotificationObserver emailChannel = ChannelFactory.getChannel(ChannelType.EMAIL);
+        NotificationObserver smsChannel = ChannelFactory.getChannel(ChannelType.SMS);
+        NotificationObserver pushChannel = ChannelFactory.getChannel(ChannelType.PUSH);
 
+        notificationService.subscribe(emailChannel);
+        notificationService.subscribe(smsChannel);
+        notificationService.subscribe(pushChannel);
+
+        notificationService.sendNotification(new Notification("This is a EMAIL", ChannelType.EMAIL, user));
+        notificationService.sendNotification(new Notification("This is SMS", ChannelType.SMS, user));
+        notificationService.sendNotification(new Notification("This is PUSH", ChannelType.PUSH, user));
 
 
     }

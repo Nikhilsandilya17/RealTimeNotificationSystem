@@ -1,7 +1,7 @@
 import models.ChannelType;
 
 public class ChannelFactory {
-    public static NotificationStrategy getChannel(ChannelType channelType) {
+    public static NotificationObserver getChannel(ChannelType channelType) {
         return switch (channelType) {
             case SMS -> new SMSChannel();
             case EMAIL -> new EmailChannel();

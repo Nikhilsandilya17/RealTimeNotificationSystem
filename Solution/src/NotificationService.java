@@ -32,4 +32,10 @@ public class NotificationService implements NotificationSubject{
             notificationObserver.update(notification);
         }
     }
+
+    public void sendNotification(Notification notification){
+        notifyObservers(notification);
+    }
+
+
 }
